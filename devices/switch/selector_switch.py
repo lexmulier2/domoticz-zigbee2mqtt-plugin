@@ -51,3 +51,6 @@ class SelectorSwitch(Device):
             nValue=1 if level > 0 else 0,
             sValue=str(level)
         )
+
+    def update_device(self, device, values):
+        device.Update(**values)
