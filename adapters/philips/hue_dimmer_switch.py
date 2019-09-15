@@ -1,5 +1,6 @@
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
+from devices.switch.dimmer_switch import DimmerSwitch
 
 
 class HueDimmerSwitch(AdapterWithBattery):
@@ -28,7 +29,11 @@ class HueDimmerSwitch(AdapterWithBattery):
         self.switch.add_level('on-hold', 'on-hold')
         self.switch.add_level('on-hold-release', 'on-hold-release')
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
+        self.switch.disable_value_check_on_update()
         self.devices.append(self.switch)
+        # Add dimmer
+        self.dimmer = DimmerSwitch(devices, 'bright', 'brightness')
+        self.devices.append(self.dimmer)
         
     def convert_message(self, message):
         message = super().convert_message(message)

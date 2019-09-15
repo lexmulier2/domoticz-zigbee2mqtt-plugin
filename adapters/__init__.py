@@ -21,6 +21,7 @@ from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.sensor_vibration import SensorVibration
 from adapters.lumi.plug import Plug
 from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
+from adapters.lumi.JTQJBF01LM import JTQJBF01LM
 from adapters.lumi.WSDCGQ01LM import WSDCGQ01LM
 from adapters.lumi.WSDCGQ11LM import WSDCGQ11LM
 from adapters.lumi.WXKG01LM import WXKG01LM
@@ -29,6 +30,7 @@ from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.ZNCZ02LM import ZNCZ02KM
+from adapters.lumi.LLKZMK11LM import LLKZMK11LM
 from adapters.samsung.sensor_arrival import SensorArrival
 from adapters.samsung.sensor_door import SmartThingsDoorSensor
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
@@ -89,7 +91,7 @@ adapter_by_model = {
     'HS1DS-E': ContactAdapter,          # HEIMAN Door sensor
     'HS1SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     'HS1WL': WaterLeakSensorAdapter,    # HEIMAN Water leakage sensor
-    'HS1-WL-E': HS1WLE, # HEIMAN Water leakage sensor
+    'HS1-WL-E': HS1WLE,                 # HEIMAN Water leakage sensor
     'HS3SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     # Hive
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
@@ -100,7 +102,7 @@ adapter_by_model = {
     'LED1537R6': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
     'LED1545G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
     'LED1546G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear
-    'LED1622G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white 
+    'LED1622G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
     'LED1623G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
     'LED1624G9': RGBAdapter,            # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
     'LED1649C5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
@@ -117,8 +119,9 @@ adapter_by_model = {
     'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     'E1743': OnOffSwitchAdapter,        # IKEA TRADFRI ON/OFF switch
+    'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     # Immax
-    'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
+    'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
     # Innr
     'BY 165': DimmableBulbAdapter,      # Innr B22 Bulb dimmable
     'BY 185 C': RGBWAdapter,            # Innr B22 Bulb RGBW
@@ -184,7 +187,7 @@ adapter_by_model = {
     '4058075816794': DimmableCtBulbAdapter, # OSRAM Smart+ Ceiling TW
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
-    '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW 
+    '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW
     # Paulmann
     '50045': DimmableBulbAdapter,       # Paulmann SmartHome Zigbee LED-stripe
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
@@ -216,6 +219,8 @@ adapter_by_model = {
     '9290012607': HueMotionSensor,      # Philips Hue Motion Sensor (occupancy, temperature, illimination)
     '9290018195': DimmableBulbAdapter,  # Philips Hue white GU10
     '9290019758': HueMotionSensor,      # Philips Hue motion outdoor sensor
+    '1741830P7': RGBWAdapter,        # Philips Hue lily outdoor spotlight
+
     # Sengled
     'E1ACA4ABE38A': DimmableBulbAdapter,    # Sengled Element downlight smart LED bulb
     'E11-G13': DimmableBulbAdapter,         # Sengled Element Classic (A19)
@@ -230,7 +235,7 @@ adapter_by_model = {
     # SmartThings
     'STSS-MULT-001': ContactAdapter,    # SmartThings Multipurpose sensor
     'F-MLT-US-2': ContactAdapter,       # SmartThings Multipurpose sensor (2016 model)
-    'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor 
+    'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor
     'STS-IRM-250': MotionAndTemperatureSensorAdapter,   # SmartThings Motion sensor (2016 model)
     '3305-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2014 model)
     '3325-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2015 model)
@@ -262,6 +267,7 @@ adapter_by_model = {
     # Xiaomi
     'DJT11LM': SensorVibration,         # Xiaomi Aqara vibration sensor (drop, tilt and touch)
     'JTYJ-GD-01LM/BW': SmokeSensorAdapter,  # Xiaomi MiJia Honeywell smoke detector
+    'JTQJ-BF-01LM/BW': JTQJBF01LM,      # Xiaomi MiJia gas leak detector
     'MCCGQ01LM': SensorMagnet,          # Xiaomi MiJia door & window contact sensor
     'MCCGQ11LM': SensorMagnet,          # Xiaomi Aqara door & window contact sensor
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
@@ -271,10 +277,10 @@ adapter_by_model = {
     'QBKG11LM': Plug,                   # Xiaomi Aqara single key wired wall switch
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
-    'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor 
+    'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor
     'SJCGQ11LM': WaterLeakSensorAdapter,# Xiaomi Aqara water leak sensor
     'WSDCGQ01LM': WSDCGQ01LM,           # Xiaomi MiJia temperature & humidity sensor
-    'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor 
+    'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor
     'WXKG01LM': WXKG01LM,               # Xiaomi MiJia wireless switch
     'WXKG02LM': WXKG02LM,               # Xiaomi Aqara double key wireless wall switch
     'WXKG03LM': WXKG03LM,               # Xiaomi Aqara single key wireless wall switch
@@ -282,6 +288,7 @@ adapter_by_model = {
     'WXKG12LM': WXKG12LM,               # Xiaomi Aqara wireless switch (with gyroscope)
     'ZNCZ02LM': ZNCZ02KM,               # Xiaomi Mi power plug ZigBee
     'ZNLDP12LM': DimmableCtBulbAdapter, # Xiaomi Aqara smart LED bulb
+    'LLKZMK11LM':LLKZMK11LM,            # Xiaomi Aqara Two-way Control Module
     # iCasa
     'ICZB-IW11D': DimmableBulbAdapter,  # iCasa Zigbee 3.0 Dimmer
     # ilux
